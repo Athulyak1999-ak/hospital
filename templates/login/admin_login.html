@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+{% for msg in messages %}
+{{ msg }}
+{% endfor %}
+<div class="container">
+<form action="" method="post">
+    {% csrf_token %}
+    <p class="text-center"><b> PATIENTS LOGIN PORTAL</b></p>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input type="text" name="username" class="form-control"  placeholder="Enter the username">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" name="password"  class="form-control" placeholder="Enter the password">
+        </div>
+    </div>
+    <input type="submit" value="login" class="btn btn-success" >
+    <p> Don't have an account?<a href="{% url 'register' %}"><b>Register</b></a></p>
+    <a href="{% url 'home_page' %}" class="btn btn-success"><b>Home Page</b></a>
+</form>
+</div>
+</body>
+</html>

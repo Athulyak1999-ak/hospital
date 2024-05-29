@@ -1,0 +1,18 @@
+<!-- patient/templates/patient/view_record.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Patient Record</title>
+</head>
+<body>
+    <h1>Medical Record for {{ record.patient.username }}</h1>
+    <p>Medical History: {{ record.medical_history }}</p>
+    <p>Diagnosis: {{ record.diagnosis }}</p>
+    <p>Medications: {{ record.medications }}</p>
+    <p>Allergies: {{ record.allergies }}</p>
+    <p>Treatment History: {{ record.treatment_history }}</p>
+    <a href="{% url 'manage_patient_records' record.patient.id %}">Back to Records</a>
+</body>
+</html>

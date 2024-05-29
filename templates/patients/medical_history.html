@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical History</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"></head>
+<body>
+    <h2>Medical History</h2>
+    <ul>
+        {% for record in medical_histories %}
+            <li>{{ record.record_date }} - {{ record.diagnosis }}: {{ record.treatment }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

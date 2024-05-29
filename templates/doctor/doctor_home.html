@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .profile, .appointments, .contact {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .profile h2, .appointments h2, .contact h2 {
+            color: #4CAF50;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doctors Portal</h1>
+    </header>
+    <nav>
+        <a href="#">Home </a>
+        <a href="{% url 'manage_patient_records' %}">Manage Patients </a>
+        <a href="{% url 'admin_appointment_list' %}">View Appointments</a>
+        <a href="{% url 'e_prescribe' %}">E_Prescribe Medications</a>
+        <a href="{% url 'doctor_logout' %}">Logout</a>
+
+
+    </nav>
+    <div class="container">
+        <div class="profile">
+            <img src="{% static 'Image/background/background_image1-hospital.webp' %}" class="img-fluid custom-img" alt="Hospital Image" style="width:100%">
+
+
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 Healthcare Inc. All rights reserved.
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if page.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+      {% endif %}
+      {% for num in page.paginator.page_range %}
+    <li class="page-item {% if page.number == num %} activate{% endif %}" >
+        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+    </li>
+      {% endfor %}
+      {% if page.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
+
+
+{% endblock %}

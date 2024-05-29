@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .profile, .appointments, .records {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .profile h2, .appointments h2, .contact h2, .records h2 {
+            color: #4CAF50;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Patient Portal</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="{% url 'create_appointment' %}">Appointments</a>
+         <a href="{% url 'billing' %}">Billing Session</a>
+         <a href="{% url 'user_logout' %}">Logout</a>
+    </nav>
+    <div class="container">
+        <div class="profile">
+            <h2>Patient Profile</h2>
+            <p><strong>Name:</strong> {{ patient.username }}</p>
+            <p><strong>Address:</strong> {{ patient.address }}</p>
+            <p><strong>Phone Number:</strong> {{ patient.phone_number }}</p>
+        </div>
+
+        <div class="records">
+            <h2>Patient Records</h2>
+            {% if patient_records %}
+                <ul>
+                    {% for record in patient_records %}
+                        <li>
+                            <p><strong>Medical History:</strong> {{ record.patient  }}</p>
+                            <p><strong>Medical History:</strong> {{ record.medical_history }}</p>
+                            <p><strong>Diagnosis:</strong> {{ record.diagnosis }}</p>
+                            <p><strong>Medications:</strong> {{ record.medications }}</p>
+                            <p><strong>Allergies:</strong> {{ record.allergies }}</p>
+                            <p><strong>Treatment History:</strong> {{ record.treatment_history }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No records found.</p>
+            {% endif %}
+        </div>
+         <div class="appointments">
+           <h2>Health Education Resources</h2>
+           <ul>
+             <li><a href="https://www.healthline.com">Healthline</a></li>
+            <li><a href="https://www.webmd.com">WebMD</a></li>
+            <li><a href="https://www.mayoclinic.org">Mayo Clinic</a></li>
+           </ul>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 Healthcare Inc. All rights reserved.
+    </div>
+</body>
+</html>

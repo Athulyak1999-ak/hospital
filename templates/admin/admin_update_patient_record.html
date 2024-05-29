@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Patient Record</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .profile, .appointments, .contact {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .profile h2, .appointments h2, .contact h2 {
+            color: #4CAF50;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Admin Portal</h1>
+    </header>
+    <div class="container">
+        <div class="card-deck">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Home</h5>
+                <p class="card-text">Home page of admin</p>
+                <a href="{% url 'admin_view' %}" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">Manage users records.</p>
+                    <a href="{% url 'manage_users' %}"  class="btn btn-primary">Users</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Appointments</h5>
+                    <p class="card-text">Manage appointments.</p>
+                     <a href="{% url 'admin_create_appointment' %}" class="btn btn-primary">Appointments</a>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Facilities</h5>
+                    <p class="card-text">Manage facilities.</p>
+                    <a href="{% url 'manage_facilities' %}" class="btn btn-primary">Manage facilities</a>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Manage Billing</h5>
+                    <p class="card-text">Manage Patient Billing</p>
+                    <a href="{% url 'create_billing' %}" class="btn btn-primary">Patient Billing</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Logout</h5>
+                    <p class="card-text">Back to Login Page</p>
+                    <a href="{% url 'doctor_logout' %}" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="appointments">
+        <div class="container border border-secondary">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="mb-4">Update Record</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Update Record</button>
+                         <a href="{% url 'admin_manage_patient_records'  %}" class="btn btn-secondary">Cancel</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    &copy; 2024 Healthcare Inc. All rights reserved.
+</div>
+</body>
+</html>
